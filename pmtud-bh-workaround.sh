@@ -7,7 +7,7 @@ GAWK_EXE="/usr/bin/gawk"
 IP_EXE="/usr/bin/ip"
 
 CACHE_TTL=$((3600 * 48)) # 48h
-CACHE_DIR="/var/cache/pmtubd-workaround"
+CACHE_DIR="/var/cache/pmtud-bh-workaround"
 
 WHOIS_SERVICE="whois.radb.net"
 INDEPENDENT_IP="1.1.1.1" # random public IP
@@ -33,13 +33,13 @@ fi;
 
 
 # parse argv
-[[ $# < 2 ]] && stop "Usage: pmtubd-workaround.sh TARGET_ASN TARGET_MTU"
+[[ $# < 2 ]] && stop "Usage: pmtud-bh-workaround.sh TARGET_ASN TARGET_MTU"
 [[ ! "$1" =~ ^AS[0-9]+$ ]] && stop "invalid ASN"
 [[ ! "$2" =~ ^[0-9]+$ ]] && stop "invalid MTU"
 
 TARGET_ASN="$1"
 TARGET_MTU="$2"
-IP_TABLE_NUMBER="10297$(echo "$TARGET_ASN" | $GAWK_EXE 'match($0, /AS([0-9]+)/, a) {print a[1]}')"
+IP_TABLE_NUMBER="100$(echo "$TARGET_ASN" | $GAWK_EXE 'match($0, /AS([0-9]+)/, a) {print a[1]}')"
 
 
 # recv subnets
