@@ -1,0 +1,12 @@
+[Unit]
+Description=Path MTU Discovery Black Hole Workaround
+Documentation=https://github.com/PtaxLaine/pmtubd-workaround
+After=network-online.target
+
+[Timer]
+OnBootSec=1min
+OnUnitInactiveSec=1h
+Unit=pmtubd-workaround@.service
+
+[Install]
+WantedBy=network-online.target timers.target

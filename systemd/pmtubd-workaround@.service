@@ -1,0 +1,13 @@
+[Unit]
+Description=Path MTU Discovery Black Hole Workaround
+Documentation=https://github.com/PtaxLaine/pmtubd-workaround
+After=network-online.target
+
+[Service]
+Type=oneshot
+Environment="SCRIPT_ARGS=%I"
+ExecStart=bash /opt/pmtubd-workaround.sh $SCRIPT_ARGS
+Restart=on-failure
+
+[Install]
+WantedBy=network-online.target
