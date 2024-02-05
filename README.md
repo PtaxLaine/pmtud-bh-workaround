@@ -38,5 +38,5 @@ $ sudo systemctl daemon-reload
 ```
 - Enable and start `pmtubd-workaround@.timer` or  `pmtubd-workaround@.service`
 ```console
-$ sudo systemctl enable --now pmtubd-workaround@"AS64496 1280".timer
+$ sudo systemctl enable --now pmtubd-workaround@"AS64496\x201280".timer
 ```
