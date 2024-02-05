@@ -89,3 +89,6 @@ for active_subnet in $ACTIVE_SUBNETS; do
         $IP_EXE -4 route del table "$IP_TABLE_NUMBER" "$active_subnet" || true
     fi;
 done;
+
+# cleanup route cache
+$IP_EXE -4 route flush cache
