@@ -109,7 +109,7 @@ watch(){
 	while read line; do
 		sleep 2;
 		break;
-	done < <(ip monitor route)
+	done < <($IP_EXE -4 monitor route)
 	pkill -P $$
 }
 
