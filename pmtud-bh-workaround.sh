@@ -38,6 +38,11 @@ fi;
 [[ $# < 2 ]] && stop "Usage: pmtud-bh-workaround.sh TARGET_ASN TARGET_MTU"
 [[ ! "$1" =~ ^AS[0-9]+$ ]] && stop "invalid ASN"
 [[ ! "$2" =~ ^[0-9]+$ ]] && stop "invalid MTU"
+if [[ $# > 2 && "$3" == "--service" ]]; then
+    AS_SERVICE=true
+else
+	AS_SERVICE=false
+fi;
 
 TARGET_ASN="$1"
 TARGET_MTU="$2"
@@ -110,5 +115,9 @@ watch(){
 
 while true; do
 	service
-	watch
+	if [[ $AS_SERVICE == true ]]; then
+		watch
+	else
+		break
+	fi;
 done;

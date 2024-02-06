@@ -5,7 +5,7 @@ After=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/bash -c 'mapfile -d ':' -t ARGV < <(echo "%i") && /usr/bin/bash /opt/pmtud-bh-workaround.sh $${ARGV[@]}'
+ExecStart=/usr/bin/bash -c 'mapfile -d ':' -t ARGV < <(echo "%i") && /usr/bin/bash /opt/pmtud-bh-workaround.sh $${ARGV[@]} --service'
 Restart=always
 RestartSec=24
 
