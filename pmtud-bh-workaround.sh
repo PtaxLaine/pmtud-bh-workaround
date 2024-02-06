@@ -16,21 +16,21 @@ IP_RULE_TARGET_PREF=100
 
 
 stop() {
-    >&2 echo "STOP! $*"
-    false
+	>&2 echo "STOP! $*"
+	false
 }
 warn() {
-    >&2 echo "WARN! $*"
-    true
+	>&2 echo "WARN! $*"
+	true
 }
 
 # check_dependicies
 for exe in $WHOIS_EXE $ZIP_EXE $GAWK_EXE $IP_EXE; do
-    [[ ! -f "$exe" ]] && stop "'$exe' not found!"
-    true
+	[[ ! -f "$exe" ]] && stop "'$exe' not found!"
+	true
 done;
 if [[ ! $($IP_EXE -4 rule list table main pref 32766) ]]; then
-    stop "Error: you use unsupported network configuration"
+	stop "Error: you use unsupported network configuration"
 fi;
 
 
@@ -101,14 +101,14 @@ service(){
 }
 
 watch(){
-    while read line; do
-        sleep 2;
-        break;
-    done < <(ip monitor route)
+	while read line; do
+		sleep 2;
+		break;
+	done < <(ip monitor route)
 	pkill -P $$
 }
 
 while true; do
-    service
-    watch
+	service
+	watch
 done;
