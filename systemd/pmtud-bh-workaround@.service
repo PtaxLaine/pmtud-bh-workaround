@@ -6,7 +6,8 @@ After=network-online.target
 [Service]
 Type=simple
 ExecStart=/usr/bin/bash -c 'mapfile -d ':' -t ARGV < <(echo "%i") && /usr/bin/bash /opt/pmtud-bh-workaround.sh $${ARGV[@]}'
-Restart=on-failure
+Restart=always
+RestartSec=24
 
 [Install]
 WantedBy=network-online.target
