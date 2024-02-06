@@ -10,7 +10,6 @@ CACHE_TTL=$((3600 * 48)) # 48h
 CACHE_DIR="/var/cache/pmtud-bh-workaround"
 
 WHOIS_SERVICE="whois.radb.net"
-INDEPENDENT_IP="1.1.1.1" # random public IP
 
 IP_RULE_MAIN_PREF=99
 IP_RULE_TARGET_PREF=100
@@ -62,7 +61,7 @@ SUBNETS="$("$ZIP_EXE" -d -c "$CACHE_FILE")"
 
 
 # get default route
-DEFAULT_ROUTE=$($IP_EXE -4 route get $INDEPENDENT_IP)
+DEFAULT_ROUTE=$($IP_EXE -4 route show default 0.0.0.0/0)
 DEFAULT_GW="$(echo "$DEFAULT_ROUTE" | $GAWK_EXE 'match($0, /via\s+([0-9.]+)/, a) {print a[1]}')"
 DEFAULT_DEV="$(echo "$DEFAULT_ROUTE" | $GAWK_EXE 'match($0, /dev\s+([a-zA-Z0-9._\-]+)/, a) {print a[1]}')"
 
