@@ -5,8 +5,7 @@ After=network-online.target
 
 [Service]
 Type=simple
-Environment="SCRIPT_ARGS=%I"
-ExecStart=/usr/bin/bash /opt/pmtud-bh-workaround.sh $SCRIPT_ARGS
+ExecStart=/usr/bin/bash -c 'mapfile -d ':' -t ARGV < <(echo "%i") && /usr/bin/bash /opt/pmtud-bh-workaround.sh $${ARGV[@]}'
 Restart=on-failure
 
 [Install]
