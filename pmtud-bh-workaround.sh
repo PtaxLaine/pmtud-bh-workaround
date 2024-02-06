@@ -19,7 +19,10 @@ stop() {
     >&2 echo "STOP! $*"
     false
 }
-
+warn() {
+    >&2 echo "WARN! $*"
+    true
+}
 
 # check_dependicies
 for exe in $WHOIS_EXE $ZIP_EXE $GAWK_EXE $IP_EXE; do
@@ -61,7 +64,11 @@ SUBNETS="$("$ZIP_EXE" -d -c "$CACHE_FILE")"
 
 
 # get default route
-DEFAULT_ROUTE=$($IP_EXE -4 route show default 0.0.0.0/0)
+mapfile -t DEFAULT_ROUTE < <( $IP_EXE -4 route show default 0.0.0.0/0 )
+[[ ${#DEFAULT_ROUTE[@]} == 0 ]] && stop "Error: no default route found"
+[[ ${#DEFAULT_ROUTE[@]} > 1 ]] && warn "multiple default route founds"
+DEFAULT_ROUTE="${DEFAULT_ROUTE[0]}"
+
 DEFAULT_GW="$(echo "$DEFAULT_ROUTE" | $GAWK_EXE 'match($0, /via\s+([0-9.]+)/, a) {print a[1]}')"
 DEFAULT_DEV="$(echo "$DEFAULT_ROUTE" | $GAWK_EXE 'match($0, /dev\s+([a-zA-Z0-9._\-]+)/, a) {print a[1]}')"
 
