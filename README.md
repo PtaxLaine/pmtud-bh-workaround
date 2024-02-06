@@ -8,10 +8,14 @@ pmtud-bh-workaround.sh TARGET_ASN TARGET_MTU
     TARGET_MTU - MTU for target AS subnets. Example: "1280"
 ```
 
-`$ sudo systemctl enable --now pmtud-bh-workaround@"AS64496 1280".service`
+`$ sudo systemctl enable --now pmtud-bh-workaround@"AS64496\x201280".service`
 
-`$ sudo systemctl enable --now pmtud-bh-workaround@"AS64496 1280".timer`
+`$ sudo systemctl enable --now pmtud-bh-workaround@"AS64496\x201280".timer`
 
+*Notice:* "AS64496\x201280" means:
+- AS64496 — target autonomous system number - 64496
+- \x20 — delimiter - [SPACE] hex code
+- 1280 — target MTU - 1280
 
 ## Dependencies
 - gawk 
