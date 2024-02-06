@@ -1,0 +1,26 @@
+#!/bin/bash -e
+# see: dh_installdeb(1)
+
+case "$1" in
+    purge|remove|abort-install|disappear)
+        [[ -f /usr/bin/systemctl ]] && systemctl daemon-reload
+        
+        rm -rf /var/cache/pmtud-bh-workaround
+
+        notremoved=$( find /etc/systemd/system -name 'pmtud-bh-workaround@*' ) && \
+        if [[ "$notremoved" != "" ]]; then \
+            echo -e "WARNGING!\nNext files wasn't removed:\n===============\n$notremoved\n==============\n" ; \
+        fi;
+
+        exit 0
+    ;;
+
+    upgrade|failed-upgrade|abort-upgrade)
+    ;;
+
+    *)
+        exit 1
+    ;;
+esac
+
+exit 0

@@ -1,0 +1,20 @@
+Source:            pmtud-bh-workaround
+Section:           net
+Priority:          optional
+Maintainer:        {{DEBMAINTAINER}}
+Homepage:          https://github.com/PtaxLaine/pmtud-bh-workaround
+Standards-Version: 4.6.2
+Build-Depends:
+    debhelper,
+    bash,
+    devscripts
+
+Package:           pmtud-bh-workaround
+Provides:          pmtud-bh-workaround
+Architecture:      all
+Description:       A little and naive workaround for Path MTU Discovery Black Hole issues
+Depends:
+    gawk,
+    whois,
+    gzip,
+    iproute2

@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+#export DH_VERBOSE = 1
+
+PKG_NAME:=pmtud-bh-workaround
+build_dir:=debian/$(PKG_NAME)
+PKG_PREFIX:=/opt/PKG_NAME
+SHELL:=/bin/bash
+
+override_dh_install:
+	@ export NO_CHECK_DEPENDECIES=1; \
+	ls -alh . && \
+	pwd && \
+	make build && \
+	mkdir -p "$(build_dir)" && \
+	tar -xf build/output/pmtud-bh-workaround.tar.zst -C $(build_dir)
+
+override_dh_clean:
+override_dh_auto_clean:
+override_dh_auto_build:
+override_dh_auto_install:
+override_dh_fixperms:
+	dh_fixperms
+
+%:
+	dh $@

@@ -1,0 +1,22 @@
+post_install() {
+  daemon_reload
+}
+
+post_upgrade() {
+  daemon_reload
+}
+
+post_remove() {
+  daemon_reload
+  
+  rm -rf /var/cache/pmtud-bh-workaround
+
+  notremoved=$( find /etc/systemd/system -name 'pmtud-bh-workaround@*' ) && \
+  if [[ "$notremoved" != "" ]]; then \
+    echo -e "WARNGING!\nNext files wasn't removed:\n===============\n$notremoved\n==============\n" ; \
+  fi;
+}
+
+daemon_reload() {
+  [[ -f "/usr/bin/systemctl" ]] && /usr/bin/systemctl daemon-reload
+}

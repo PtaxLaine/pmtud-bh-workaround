@@ -1,0 +1,5 @@
+#!/bin/bash -e
+# see: dh_installdeb(1)
+
+[[ -f /usr/bin/systemctl ]] && systemctl daemon-reload
+exit 0
