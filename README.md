@@ -10,8 +10,6 @@ pmtud-bh-workaround.sh TARGET_ASN TARGET_MTU
 
 `$ sudo systemctl enable --now pmtud-bh-workaround@"AS64496\x201280".service`
 
-`$ sudo systemctl enable --now pmtud-bh-workaround@"AS64496\x201280".timer`
-
 *Notice:* "AS64496\x201280" means:
 - AS64496 — target autonomous system number - 64496
 - \x20 — delimiter - [SPACE] hex code
@@ -35,12 +33,12 @@ $ sudo pacman -S --needed gawk whois gzip iproute2
 ## Installation
 - Check the above `Dependencies` 
 - Copy `pmtud-bh-workaround.sh` to `/opt/pmtud-bh-workaround.sh`
-- Copy `systemd/pmtud-bh-workaround@.service` and `systemd/pmtud-bh-workaround@.timer` to `/etc/systemd/system`
+- Copy `systemd/pmtud-bh-workaround@.service` to `/etc/systemd/system`
 - Reload systemd daemons
 ```console
 $ sudo systemctl daemon-reload
 ```
-- Enable and start `pmtud-bh-workaround@.timer` or  `pmtud-bh-workaround@.service`
+- Enable and start `pmtud-bh-workaround@.service`
 ```console
-$ sudo systemctl enable --now pmtud-bh-workaround@"AS64496\x201280".timer
+$ sudo systemctl enable --now pmtud-bh-workaround@"AS64496\x201280".service
 ```

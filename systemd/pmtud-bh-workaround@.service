@@ -4,7 +4,7 @@ Documentation=https://github.com/PtaxLaine/pmtud-bh-workaround
 After=network-online.target
 
 [Service]
-Type=oneshot
+Type=simple
 Environment="SCRIPT_ARGS=%I"
 ExecStart=/usr/bin/bash /opt/pmtud-bh-workaround.sh $SCRIPT_ARGS
 Restart=on-failure
