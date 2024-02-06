@@ -35,7 +35,7 @@ fi;
 
 
 # parse argv
-[[ $# < 2 ]] && stop "Usage: pmtud-bh-workaround.sh TARGET_ASN TARGET_MTU"
+[[ $# < 2 ]] && stop "Usage: pmtud-bh-workaround TARGET_ASN TARGET_MTU --service"
 [[ ! "$1" =~ ^AS[0-9]+$ ]] && stop "invalid ASN"
 [[ ! "$2" =~ ^[0-9]+$ ]] && stop "invalid MTU"
 if [[ $# > 2 && "$3" == "--service" ]]; then
