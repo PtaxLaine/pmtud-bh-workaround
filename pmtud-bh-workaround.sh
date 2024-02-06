@@ -24,6 +24,7 @@ warn() {
     true
 }
 
+
 # check_dependicies
 for exe in $WHOIS_EXE $ZIP_EXE $GAWK_EXE $IP_EXE; do
     [[ ! -f "$exe" ]] && stop "'$exe' not found!"
