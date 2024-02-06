@@ -105,6 +105,7 @@ watch(){
         sleep 2;
         break;
     done < <(ip monitor route)
+	pkill -P $$
 }
 
 while true; do
